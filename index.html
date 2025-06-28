@@ -1,3 +1,1252 @@
-<footer>
-  <div>© 2025 AgilizaFLow. Todos os direitos reservados.<div class="footer-links-row"><a href="politicas-de-privacidade.html" class="footer-link">Política de Privacidade</a> | <a href="termos-de-servico.html" class="footer-link">Termos de Serviço</a></div></div>
-</footer> 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgilizaFLow - Inteligência Artificial para Negócios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('nav a');
+      function onScroll() {
+        const scrollPos = window.scrollY || window.pageYOffset;
+        links.forEach(link => {
+          const section = document.querySelector(link.getAttribute('href'));
+          if (section) {
+            const top = section.offsetTop - 80;
+            const bottom = top + section.offsetHeight;
+            if (scrollPos >= top && scrollPos < bottom) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          }
+        });
+      }
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href.length > 1 && document.querySelector(href)) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    });
+    // ScrollReveal.js puro
+    document.addEventListener('DOMContentLoaded', function() {
+      const revealElements = document.querySelectorAll('section, .card, .step, .diferencial, .depoimento, h1, h2, h3, h4, h5, h6, p, .hero-tag, .hero-btns, .hero-info, form, input, textarea, button, .integre-logo');
+      const revealOptions = {
+        threshold: 0.12
+      };
+      const revealOnce = (entry, observer) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sr-reveal');
+          observer.unobserve(entry.target);
+        }
+      };
+      const observer = new window.IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => revealOnce(entry, obs));
+      }, revealOptions);
+      revealElements.forEach(el => {
+        el.classList.add('sr-init');
+        observer.observe(el);
+      });
+    });
+  </script>
+  <style>
+    .sr-init {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .sr-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .depoimentos-novo {
+      margin-top: 64px;
+      margin-bottom: 64px;
+    }
+    .depoimentos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+    .depoimento-card {
+      background: linear-gradient(135deg, #18182a 80%, #23233a 100%);
+      border-radius: 24px;
+      box-shadow: 0 6px 32px 0 #00000044;
+      padding: 32px 28px 28px 28px;
+      max-width: 340px;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #23233a;
+    }
+    .depoimento-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 40px 0 #3e8cff33;
+    }
+    .depoimento-foto {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #3e8cff;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 12px #3e8cff22;
+    }
+    .depoimento-texto p {
+      color: #fff;
+      font-size: 1.08rem;
+      font-style: italic;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .depoimento-nome {
+      color: #3e8cff;
+      font-weight: 700;
+      font-size: 1.08rem;
+      text-align: center;
+    }
+    .depoimento-cargo {
+      color: #b0b8d1;
+      font-size: 0.98rem;
+      text-align: center;
+      margin-top: 2px;
+    }
+    @media (max-width: 900px) {
+      .depoimentos-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+      .depoimento-card {
+        max-width: 95vw;
+        min-width: 0;
+      }
+    }
+    .depoimentos-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 32px;
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .testimonial-carousel {
+      margin-top: 120px;
+    }
+    .depoimento-video {
+      background: linear-gradient(135deg, #18182a 80%, #23233a 100%);
+      border-radius: 24px;
+      box-shadow: 0 6px 32px 0 #00000044;
+      width: 540px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .depoimento-video video {
+      border-radius: 24px;
+      object-fit: cover;
+      background: #111;
+      width: 100%;
+      height: 100%;
+    }
+    .depoimento-video span {
+      color: #3e8cff88;
+      font-size: 1.2rem;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    @media (max-width: 1100px) {
+      .depoimentos-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 0;
+      }
+    }
+    .section-title {
+      font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 32px;
+      margin-top: 0;
+      text-shadow: 0 4px 24px #00000044, 0 1px 0 #222;
+      line-height: 1.1;
+      background: none;
+    }
+    @media (max-width: 600px) {
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+    }
+    section, main > .container {
+      margin-top: 96px;
+      margin-bottom: 96px;
+    }
+    @media (max-width: 600px) {
+      section, main > .container {
+        margin-top: 48px;
+        margin-bottom: 48px;
+      }
+    }
+    .testimonial-card {
+      min-width: 370px;
+      max-width: 370px;
+      min-height: 400px;
+      max-height: 400px;
+      height: 400px;
+      font-size: 1.13rem;
+      padding: 36px 24px 36px 24px;
+    }
+    @media (max-width: 900px) {
+      .testimonial-card {
+        min-width: 220px;
+        max-width: 220px;
+        min-height: 320px;
+        max-height: 320px;
+        height: 320px;
+        padding: 14px 8px 12px 8px;
+      }
+    }
+    .quem-somos-novo {
+      display: flex;
+      gap: 48px;
+      background: linear-gradient(120deg, #181f2a 80%, #23233a 100%);
+      border-radius: 32px;
+      box-shadow: 0 8px 40px #3e8cff22, 0 1.5px 8px #0002;
+      padding: 56px 48px;
+      margin: 48px auto 0 auto;
+      max-width: 1100px;
+      align-items: center;
+      position: relative;
+      border: 1.5px solid #3e8cff33;
+    }
+    .qs-col-img {
+      flex: 1 1 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-width: 260px;
+      max-width: 400px;
+    }
+    .qs-col-img img {
+      width: 100%;
+      max-width: 340px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px #3e8cff33;
+      object-fit: contain;
+      background: #10111a;
+    }
+    .qs-overlay {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      background: linear-gradient(90deg, #3e8cff 60%, #6ad1ff 100%);
+      color: #fff;
+      font-size: 1.02rem;
+      font-weight: 700;
+      padding: 7px 18px;
+      border-radius: 16px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px #3e8cff44;
+      opacity: 0.92;
+      z-index: 2;
+    }
+    .qs-col-texto {
+      flex: 2 1 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 18px;
+      min-width: 260px;
+    }
+    .qs-badge {
+      background: #232c3a;
+      color: #7ecbff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+    .qs-title {
+      font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+      text-shadow: 0 4px 24px #00000044, 0 1px 0 #222;
+    }
+    .qs-desc {
+      color: #bdbdf7;
+      font-size: 1.18rem;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 0 12px 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      letter-spacing: 0.01em;
+      text-shadow: 0 2px 12px #0002;
+    }
+    .qs-beneficios {
+      display: flex;
+      gap: 24px;
+      margin: 18px 0 18px 0;
+    }
+    .qs-beneficio {
+      background: #232c3a;
+      color: #7ecbff;
+      font-size: 1.08rem;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 8px #3e8cff22;
+      letter-spacing: 0.2px;
+    }
+    .qs-ico {
+      font-size: 1.25rem;
+      display: inline-block;
+    }
+    .qs-btn {
+      margin-top: 18px;
+      background: transparent;
+      border: 2px solid #7ecbff;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.13rem;
+      border-radius: 30px;
+      padding: 14px 36px;
+      transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 12px #3e8cff22;
+    }
+    .qs-btn:hover {
+      background: linear-gradient(90deg, #3e8cff 60%, #6ad1ff 100%);
+      color: #fff;
+      border-color: #3e8cff;
+      box-shadow: 0 8px 32px #3e8cff44;
+    }
+    @media (max-width: 900px) {
+      .quem-somos-novo {
+        flex-direction: column;
+        padding: 32px 10px;
+        gap: 24px;
+      }
+      .qs-col-img, .qs-col-texto {
+        min-width: 0;
+        max-width: 98vw;
+      }
+      .qs-col-img img {
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .qs-title { font-size: 1.3rem; }
+      .qs-desc { font-size: 1rem; }
+      .qs-beneficios { flex-direction: column; gap: 10px; }
+      .quem-somos-novo { padding: 18px 2px; border-radius: 18px; }
+    }
+    .garantia-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 64px;
+      background: #0a0a0a;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      padding: 64px 0;
+      margin: 0 auto 0 auto;
+      max-width: 100vw;
+    }
+    .garantia-col-texto {
+      flex: 1 1 50%;
+      max-width: 600px;
+      margin-left: 8vw;
+    }
+    .garantia-badge {
+      background: #232c3a;
+      color: #7ecbff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+    .garantia-title {
+      font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 0.2em;
+      line-height: 1.1;
+    }
+    .garantia-desc {
+      color: #bdbdbd;
+      font-size: 1.18rem;
+      margin: 32px 0 32px 0;
+      line-height: 1.7;
+    }
+    .garantia-btn {
+      display: inline-block;
+      margin-top: 18px;
+      background: transparent;
+      border: 2px solid #FFD600;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.18rem;
+      border-radius: 12px;
+      padding: 18px 44px;
+      text-decoration: none;
+      box-shadow: 0 2px 12px #FFD60022;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+    }
+    .garantia-col-img {
+      flex: 1 1 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 320px;
+      max-width: 600px;
+    }
+    .garantia-escudo {
+      position: relative;
+      width: 420px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 60% 40%, #FFD60022 0%, #181818 80%);
+      border-radius: 50%;
+      box-shadow: 0 0 120px 0 #FFD60022, 0 0 0 1.5px #FFD60044;
+    }
+    .garantia-label {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(20,20,20,0.85);
+      color: #FFD600;
+      font-size: 2.6rem;
+      font-weight: 700;
+      padding: 0.1em 0.7em;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px #FFD60022;
+    }
+    .garantia-label span {
+      position: absolute;
+      right: 18px;
+      top: 38px;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      opacity: 0.7;
+      transform: rotate(22deg);
+    }
+    .garantia-label span:last-child {
+      position: absolute;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%);
+      color: #FFD600;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .garantia-label span:last-child span {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    .garantia-escudo-visual {
+      position: relative;
+      width: 420px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 60% 40%, #FFD60022 0%, #181818 80%);
+      border-radius: 50%;
+      box-shadow: 0 0 120px 0 #FFD60022, 0 0 0 1.5px #FFD60044;
+    }
+    .garantia-condicional {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(20,20,20,0.85);
+      color: #FFD600;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 0.1em 0.7em;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px #FFD60022;
+    }
+    .garantia-metodo {
+      position: absolute;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%);
+      color: #FFD600;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .garantia-ia-note {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      color: #FFD600;
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    @media (max-width: 900px) {
+      .garantia-section {
+        flex-direction: column;
+        padding: 32px 10px;
+        gap: 24px;
+      }
+      .garantia-col-img, .garantia-col-texto {
+        min-width: 0;
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .garantia-title { font-size: 1.3rem; }
+      .garantia-desc { font-size: 1rem; }
+      .garantia-section { padding: 18px 2px; border-radius: 18px; }
+    }
+    @media (max-width: 600px) {
+      .hero-text-desktop { display: none !important; }
+      .hero-text-mobile { display: block !important; }
+    }
+    @media (max-width: 600px) {
+      .diferencial-img-placeholder {
+        width: 240px !important;
+        height: 240px !important;
+        max-width: 98vw !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto 12px auto !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+      }
+      .diferencial-img-placeholder img {
+        width: 240px !important;
+        height: 240px !important;
+        max-width: 240px !important;
+        max-height: 240px !important;
+        object-fit: contain !important;
+        border-radius: 12px !important;
+        display: block !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+      }
+    }
+    @media (max-width: 600px) {
+      .mobile-no-br { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; min-height: 70px;">
+      <a href="#" class="logo" style="margin-left: 48px;">
+        <img src="logoagilizaflow.png" alt="Logo AgilizaFlow" style="height:60px; width:auto; display:inline-block; vertical-align:middle; margin-right:8px;">
+        Agiliza<span class="logo-flow">flow</span>
+      </a>
+      <nav id="mainNav">
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#solucoes">Soluções</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="https://wa.me/5524992136800?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20solu%C3%A7%C3%A3o%20personalizada%20para%20meu%20neg%C3%B3cio!">Contato</a>
+        <button class="menu-toggle no-scrollreveal" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero no-scrollreveal">
+      <img src="logoagilizabackground.png" alt="Logo AgilizaFlow Decorativa" class="hero-bg-logo">
+      <div class="hero-flex">
+        <div class="hero-content">
+          <h1 class="hero-title" style="max-width: 700px;">
+            <span style="color:#fff;">Transforme sua empresa</span><br>
+            <span class="hero-gradient" style="white-space:nowrap;">com IA que trabalha 24/7</span>
+          </h1>
+          <div class="hero-subtitle hero-text-desktop">
+            Soluções sob medida para revolucionar sua empresa.<br>
+            Maximize produtividade, reduza custos e aumente<br>
+            vendas com automações inteligentes e agentes de IA<br>
+            <b style="color:#fff; font-weight: 700;"> que trabalham 24 horas, 7 dias por semana.</b>
+          </div>
+          <div class="hero-subtitle hero-text-mobile" style="display:none;">
+            <span style="color:#fff;">Soluções sob medida para revolucionar sua empresa. Maximize a produtividade e reduza custos. Aumente suas vendas com automações inteligentes e </span><span style="font-size:0.98em;white-space:normal;"><span style="color:#fff;">agentes de IA </span><span style="color:#7ecbff; font-weight:700;">que trabalham 24 horas, 7 dias por semana.</span></span>
+          </div>
+          <div class="hero-btns">
+            <a href="#solucoes" class="cta-btn">Conheça as Soluções</a>
+            <a href="https://wa.me/5524992136800?text=Ol%C3%A1%2C%20gostaria%20de%20um%20diagn%C3%B3stico%20personalizado%20para%20meu%20neg%C3%B3cio!" class="cta-btn cta-btn-outline">Solicite um Diagnóstico</a>
+          </div>
+          <div class="hero-info">AgilizaFLow &bull; Inovação ao Seu Alcance</div>
+        </div>
+        <div class="hero-insights">
+          <div class="insight-card insight-cost">
+            <span class="insight-value">70%</span>
+            <span class="insight-label">Redução de Custos</span>
+          </div>
+          <div class="insight-card insight-sales">
+            <span class="insight-value">35%</span>
+            <span class="insight-label">Mais Vendas</span>
+          </div>
+          <div class="insight-card insight-prod">
+            <span class="insight-value">10x</span>
+            <span class="insight-label">Mais Produtividade</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="como-funciona" class="section-anchor">
+      <h2 class="section-title">Como Funciona</h2>
+      <div class="como-funciona-subtitulo">
+        <span>Descubra como a automação inteligente pode transformar o seu negócio, integrando tecnologia, eficiência e resultados reais.</span>
+      </div>
+      <div style="width:100%;max-width:50%;aspect-ratio:16/9;height:auto;margin:40px auto 0 auto;display:flex;align-items:center;justify-content:center;border-radius:24px;border:2px dashed #3e8cff33;background:transparent;">
+        <span style="color:#3e8cff88;font-size:1.2rem;">Espaço para vídeo horizontal</span>
+      </div>
+      <div style="text-align:center;margin:40px 0 0 0;">
+        <a href="https://wa.me/5524992136800?text=Ol%C3%A1%2C%20gostaria%20de%20um%20diagn%C3%B3stico%20personalizado%20para%20meu%20neg%C3%B3cio!" class="cta-btn cta-btn-outline">Solicite um Diagnóstico</a>
+      </div>
+    </section>
+    <!-- Soluções Inteligentes -->
+    <section id="solucoes" class="container solucoes-full section-anchor">
+      <h2 class="section-title" style="text-align:center;">Soluções</h2>
+      <div class="solucoes-cards-modernas">
+        <div class="solu-card-moderna">
+          <div class="solu-card-icone"><img src="logoengrenagemCard.svg" alt="Automação"></div>
+          <div class="solu-card-titulo">Automação 24/7</div>
+          <div class="solu-card-desc">Automatize tarefas repetitivas e ganhe produtividade com fluxos inteligentes que funcionam o tempo todo.</div>
+        </div>
+        <div class="solu-card-moderna">
+          <div class="solu-card-icone"><img src="logocaixadetextocard.svg" alt="Atendimento"></div>
+          <div class="solu-card-titulo">Atendimento com IA</div>
+          <div class="solu-card-desc">Chatbots e assistentes virtuais treinados para oferecer suporte eficiente e humanizado aos seus clientes.</div>
+        </div>
+        <div class="solu-card-moderna">
+          <div class="solu-card-icone"><img src="logodadoscard.svg" alt="Dados"></div>
+          <div class="solu-card-titulo">Análise de Dados</div>
+          <div class="solu-card-desc">Transforme dados em decisões estratégicas com inteligência artificial e dashboards personalizados.</div>
+        </div>
+        <div class="solu-card-moderna">
+          <div class="solu-card-icone"><img src="logocopiarlinkcard.svg" alt="Integração"></div>
+          <div class="solu-card-titulo">Integração de Sistemas</div>
+          <div class="solu-card-desc">Conecte diferentes plataformas e otimize sua operação com integrações inteligentes.</div>
+        </div>
+        <div class="solu-card-moderna">
+          <div class="solu-card-icone"><img src="logofollowupcard.svg" alt="Follow-up"></div>
+          <div class="solu-card-titulo">Follow-up Automático</div>
+          <div class="solu-card-desc">Garanta que cada lead seja acompanhado até a conversão com automações de follow-up.</div>
+        </div>
+        <div class="solu-card-moderna">
+          <div class="solu-card-icone"><img src="logoresultadoscard.svg" alt="Resultados"></div>
+          <div class="solu-card-titulo">Resultados Comprovados</div>
+          <div class="solu-card-desc">Maximize oportunidades de vendas e veja resultados reais com soluções validadas no mercado.</div>
+        </div>
+      </div>
+      <div class="separador-elegante">
+        <span class="linha"></span>
+        <span class="icone-separador">
+          <img src="logoagilizaflow.png" alt="Separador" />
+        </span>
+        <span class="linha"></span>
+      </div>
+      <section class="leads-vendas-section">
+        <div class="leads-vendas-content">
+          <div class="leads-vendas-img">
+            <img src="leadsevendas.svg" alt="Leads e Vendas">
+          </div>
+          <div class="leads-vendas-texto">
+            <h2>Automatize a geração de leads e aumente suas vendas</h2>
+            <p>
+              Potencialize seus resultados com nossas soluções de IA e integração total.<br>
+              Tenha mais precisão, agilidade e resultados reais para o seu negócio.
+            </p>
+            <a href="https://wa.me/5524992136800?text=Ol%C3%A1%2C%20gostaria%20de%20um%20diagn%C3%B3stico%20personalizado%20para%20meu%20neg%C3%B3cio!" class="cta-btn cta-btn-outline">Solicite um Diagnóstico</a>
+          </div>
+        </div>
+      </section>
+    </section>
+    <!-- Nova seção de integrações -->
+    <section id="integre-solucoes" class="integre-section container sr-init">
+      <h2 class="section-title">Integrações</h2>
+      <p class="integre-desc">Conecte facilmente com as principais ferramentas do mercado e potencialize seus fluxos de trabalho. Automatize, centralize e otimize processos com integrações inteligentes e seguras.</p>
+      <div class="marquee">
+        <div class="marquee-content">
+          <div class="integre-logo"><img src="logogemini.svg" alt="Logo Gemini" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <div class="integre-logo"><img src="logon8n.svg" alt="Logo N8N" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <div class="integre-logo"><img src="logoopenai.svg" alt="Logo OpenAI" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <div class="integre-logo"><img src="logosupabase.svg" alt="Logo Supabase" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <div class="integre-logo"><img src="logogoogleworkspace.svg" alt="Logo Google Workspace" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <!-- Duplicar para efeito contínuo -->
+          <div class="integre-logo"><img src="logogemini.svg" alt="Logo Gemini" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <div class="integre-logo"><img src="logon8n.svg" alt="Logo N8N" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <div class="integre-logo"><img src="logoopenai.svg" alt="Logo OpenAI" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <div class="integre-logo"><img src="logosupabase.svg" alt="Logo Supabase" style="width:100%;height:100%;object-fit:contain;" /></div>
+          <div class="integre-logo"><img src="logogoogleworkspace.svg" alt="Logo Google Workspace" style="width:100%;height:100%;object-fit:contain;" /></div>
+        </div>
+      </div>
+    </section>
+    <!-- Fim da nova seção -->
+    <div class="separador-elegante">
+      <span class="linha"></span>
+      <span class="icone-separador">
+        <img src="logoagilizaflow.png" alt="Separador" />
+      </span>
+      <span class="linha"></span>
+    </div>
+    <section id="diferenciais" class="container">
+      <h2 class="section-title">Gestão Inteligente</h2>
+      <div class="como-funciona-subtitulo">
+        <span>Descubra como a gestão inteligente potencializa seus resultados, unindo automação, análise de dados e suporte especializado para o seu negócio crescer com segurança.</span>
+      </div>
+      <div class="diferenciais">
+        <div class="diferencial">
+          <div class="diferencial-img-placeholder"><img src="cardatualizacoesestrategicas.svg" alt="Atualizações Estratégicas" style="width: 100%; height: 100%; object-fit: cover; background: transparent; border: none;" /></div>
+          <div class="diferencial-text">
+            <div class="diferencial-title">Atualizações Estratégicas</div>
+            <div class="diferencial-desc">Mantenha suas automações sempre alinhadas ao seu negócio, com melhorias contínuas.</div>
+          </div>
+        </div>
+        <div class="diferencial">
+          <div class="diferencial-img-placeholder"><img src="cardsuportehumanizado.svg" alt="Suporte Humanizado" style="width: 100%; height: 100%; object-fit: cover; background: transparent; border: none;" /></div>
+          <div class="diferencial-text">
+            <div class="diferencial-title">Suporte humanizado</div>
+            <div class="diferencial-desc">Equipe pronta para ajudar, com atendimento próximo e focado.</div>
+          </div>
+        </div>
+        <div class="diferencial">
+          <div class="diferencial-img-placeholder"><img src="cardpreaprovacao.svg" alt="Pré Aprovação" style="width: 100%; height: 100%; object-fit: cover; background: transparent; border: none;" /></div>
+          <div class="diferencial-text">
+            <div class="diferencial-title">Pré Aprovação</div>
+            <div class="diferencial-desc">Implementamos apenas quando você estiver 100% satisfeito. Cada automação é validada e aprovada antes de entrar em produção.</div>
+          </div>
+        </div>
+        <div class="diferencial">
+          <div class="diferencial-img-placeholder"><img src="cardsolucoespersonalizadas.svg" alt="Soluções Personalizadas" style="width: 100%; height: 100%; object-fit: cover; background: transparent; border: none;" /></div>
+          <div class="diferencial-text">
+            <div class="diferencial-title">Soluções personalizadas</div>
+            <div class="diferencial-desc">Automação exclusiva, adaptada ao seu negócio, com análise dos seus processos para melhores resultados.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="depoimentos" class="container depoimentos-novo section-anchor">
+      <h2 class="section-title">O que dizem nossos clientes</h2>
+      <div class="depoimentos-row" style="gap: 12px; justify-content: center; margin-bottom: 32px;">
+        <div class="depoimento-video" style="background: linear-gradient(135deg, #18182a 80%, #23233a 100%); border-radius: 24px; box-shadow: 0 6px 32px 0 #00000044; width: 540px; height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+          <iframe width="100%" height="100%" style="border-radius: 24px; object-fit: cover; background: #111; border: none;" src="https://www.youtube.com/embed/2aUe9-YWIF8?rel=0&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0" title="Depoimento 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="depoimento-video" style="background: linear-gradient(135deg, #18182a 80%, #23233a 100%); border-radius: 24px; box-shadow: 0 6px 32px 0 #00000044; width: 540px; height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+          <iframe width="100%" height="100%" style="border-radius: 24px; object-fit: cover; background: #111; border: none;" src="https://www.youtube.com/embed/SkyQ4Idiytg?rel=0&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0" title="Depoimento 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="testimonial-carousel">
+        <div class="carousel-container">
+          <!-- Botão Anterior -->
+          <button class="carousel-nav-left" onclick="animateToPrev()">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15,18 9,12 15,6"></polyline>
+            </svg>
+          </button>
+          <!-- Cards do Carrossel -->
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Os cards serão gerados dinamicamente via JavaScript -->
+          </div>
+          <!-- Botão Próximo -->
+          <button class="carousel-nav-right" onclick="animateToNext()">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9,18 15,12 9,6"></polyline>
+            </svg>
+          </button>
+        </div>
+        <!-- Indicadores -->
+        <div class="carousel-indicators" id="carouselIndicators">
+          <!-- Os indicadores serão gerados dinamicamente via JavaScript -->
+        </div>
+      </div>
+    </section>
+    <div class="separador-elegante">
+      <span class="linha"></span>
+      <span class="icone-separador">
+        <img src="logoagilizaflow.png" alt="Separador" />
+      </span>
+      <span class="linha"></span>
+    </div>
+    <section class="garantia-section">
+      <div class="garantia-col-texto">
+        <h2 class="section-title">GARANTIA DE PERFORMANCE</h2>
+        <p class="garantia-desc">
+          Na AgilizaFlow, eliminamos seu maior receio:<br>
+          <strong>você só começa a pagar quando a automação estiver funcionando perfeitamente no seu negócio.</strong><br>
+          Nossa IA é <strong>testada e ajustada até performar exatamente como você precisa</strong> – sem erros, sem surpresas.
+        </p>
+        <p class="garantia-desc">
+          <strong>Por que nossos clientes permanecem conosco?</strong><br class="mobile-no-br">
+          <span style="color:var(--primary);font-weight:600;">Economizam de 15 a 20 horas semanais</span>,<span class="mobile-no-br"><br></span>
+          tempo que agora investem em crescer o negócio.<br>
+          Com <strong>suporte contínuo e ajustes ilimitados inclusos</strong>,<span class="mobile-no-br"><br></span>
+          sua automação evolui junto com sua empresa.
+        </p>
+        <p class="garantia-desc">
+          <strong>Cancele quando quiser, sem multas.</strong><br>
+          Mas com <span style="color:var(--primary);font-weight:600;">resultados imediatos e economia real de tempo</span>,<br>
+          você vai querer que a gente automatize ainda mais processos.
+        </p>
+        <a href="https://wa.me/5524992136800?text=Ol%C3%A1%2C%20gostaria%20de%20um%20diagn%C3%B3stico%20personalizado%20para%20meu%20neg%C3%B3cio!" class="cta-btn cta-btn-outline">Solicite um Diagnóstico</a>
+      </div>
+      <div class="garantia-col-img">
+        <img src="logogarantia.svg" alt="Garantia AgilizaFlow" class="garantia-logo-img" />
+      </div>
+    </section>
+    <!-- Separador elegante antes do FAQ -->
+    <div class="separador-elegante">
+      <span class="linha"></span>
+      <span class="icone-separador">
+        <img src="logoagilizaflow.png" alt="Separador" />
+      </span>
+      <span class="linha"></span>
+    </div>
+    <section id="faq" class="faq-section container">
+      <h2 class="section-title">Perguntas Frequentes</h2>
+      <p class="faq-intro">Dúvidas sobre nossos serviços? Confira abaixo as respostas para as perguntas mais comuns ou entre em contato conosco.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Como funciona a assinatura da AgilizaFLow?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Nossa assinatura oferece acesso contínuo às soluções de automação, suporte e atualizações, sem burocracia e com total flexibilidade.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Preciso ter conhecimento técnico para usar os serviços?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Não! Nossa equipe cuida de toda a parte técnica, desde a implementação até o suporte, para que você foque no seu negócio.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Posso cancelar quando quiser?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Sim, você pode cancelar sua assinatura a qualquer momento, sem taxas extras ou complicações.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">A AgilizaFLow faz integrações com outros sistemas?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Sim! Realizamos integrações com diversas plataformas e sistemas para potencializar seus fluxos de trabalho.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Como posso acompanhar o andamento dos projetos?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Você recebe atualizações frequentes e pode acompanhar tudo por nossos canais de comunicação e relatórios personalizados.</div>
+        </div>
+      </div>
+    </section>
+    <!-- Fim da seção FAQ -->
+  </main>
+  <footer>
+    <div>© 2025 AgilizaFLow. Todos os direitos reservados.<div class="footer-links-row"><a href="politica-privacidade.html" class="footer-link">Política de Privacidade</a> | <a href="termos-servico.html" class="footer-link">Termos de Serviço</a></div></div>
+  </footer>
+  <!-- Botão flutuante WhatsApp -->
+  <a href="https://wa.me/5524992136800?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20solu%C3%A7%C3%A3o%20personalizada%20para%20meu%20neg%C3%B3cio!" class="whatsapp-float no-bg" target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
+    <img src="logowhatsapp.svg" alt="WhatsApp" width="56" height="56" />
+  </a>
+  <div id="mobileMenu" class="mobile-menu">
+    <button id="closeMobileMenu" aria-label="Fechar menu" style="position:absolute;top:24px;right:24px;background:none;border:none;z-index:1501;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><line x1="8" y1="8" x2="24" y2="24"/><line x1="24" y1="8" x2="8" y2="24"/></svg>
+    </button>
+    <a href="#como-funciona">Como Funciona</a>
+    <a href="#solucoes">Soluções</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="https://wa.me/5524992136800?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20solu%C3%A7%C3%A3o%20personalizada%20para%20meu%20neg%C3%B3cio!">Contato</a>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var marquee = document.querySelector('.marquee-content');
+      var marqueeWrapper = document.querySelector('.marquee');
+      if (marquee && marquee.children.length > 0 && marqueeWrapper) {
+        var original = marquee.innerHTML;
+        // Duplica até preencher pelo menos 3x a largura do marquee
+        while (marquee.offsetWidth < marqueeWrapper.offsetWidth * 3) {
+          marquee.innerHTML += original;
+        }
+      }
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      // Remove ScrollReveal das seções com a classe no-scrollreveal
+      document.querySelectorAll('.no-scrollreveal, .no-scrollreveal *').forEach(function(el) {
+        el.classList.remove('sr-init', 'sr-reveal');
+      });
+    });
+    // FAQ interativo
+    document.addEventListener('DOMContentLoaded', function() {
+      var faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var expanded = btn.getAttribute('aria-expanded') === 'true';
+          // Fecha todos
+          document.querySelectorAll('.faq-question').forEach(function(b) {
+            b.setAttribute('aria-expanded', 'false');
+            b.parentElement.classList.remove('open');
+          });
+          // Abre se não estava aberto
+          if (!expanded) {
+            btn.setAttribute('aria-expanded', 'true');
+            btn.parentElement.classList.add('open');
+          }
+        });
+      });
+    });
+    // Carrossel de depoimentos UX moderno
+    document.addEventListener('DOMContentLoaded', function() {
+      const track = document.querySelector('.carousel-track');
+      const cards = document.querySelectorAll('.carousel-track .depoimento-card');
+      const leftBtn = document.querySelector('.carousel-nav-left');
+      const rightBtn = document.querySelector('.carousel-nav-right');
+      const wrapper = document.querySelector('.carousel-track-wrapper');
+      const indicators = document.querySelector('.carousel-indicators');
+      let current = 0;
+      function updateIndicators() {
+        if (!indicators) return;
+        indicators.innerHTML = '';
+        const cardWidth = cards[0].offsetWidth + 36;
+        const visibleCards = Math.floor(wrapper.offsetWidth / cardWidth);
+        const maxIndex = cards.length - visibleCards < 0 ? 0 : cards.length - visibleCards;
+        for (let i = 0; i <= maxIndex; i++) {
+          const dot = document.createElement('span');
+          dot.style.width = '11px';
+          dot.style.height = '11px';
+          dot.style.borderRadius = '50%';
+          dot.style.background = i === current ? 'linear-gradient(90deg,#3e8cff 60%,#6ad1ff 100%)' : '#23233a';
+          dot.style.boxShadow = i === current ? '0 0 8px #3e8cff88' : 'none';
+          dot.style.cursor = 'pointer';
+          dot.style.transition = 'background 0.3s, box-shadow 0.3s';
+          dot.addEventListener('click', () => {
+            current = i;
+            updateCarousel();
+          });
+          indicators.appendChild(dot);
+        }
+      }
+      function updateCarousel(direction = 0) {
+        const cardWidth = cards[0].offsetWidth + 36;
+        const visibleCards = Math.floor(wrapper.offsetWidth / cardWidth);
+        const maxIndex = cards.length - visibleCards < 0 ? 0 : cards.length - visibleCards;
+        if (current > maxIndex) current = maxIndex;
+        track.style.transform = `translateX(${-current * cardWidth}px)`;
+        updateIndicators();
+        cards.forEach((card, idx) => {
+          // Cards fora do grupo central ficam totalmente transparentes
+          if (idx < current || idx >= current + visibleCards) {
+            card.style.opacity = '0';
+            card.style.pointerEvents = 'none';
+            card.style.boxShadow = 'none';
+            card.style.transform = 'scale(0.97)';
+          } else {
+            card.style.opacity = '1';
+            card.style.pointerEvents = 'auto';
+            card.style.boxShadow = '0 8px 36px 0 #3e8cff22, 0 1.5px 0 0 #3e8cff55 inset';
+            card.style.borderColor = '#3e8cff55';
+            card.style.transform = 'scale(1.03)';
+          }
+        });
+      }
+      rightBtn.addEventListener('click', function() {
+        const cardWidth = cards[0].offsetWidth + 36;
+        const visibleCards = Math.floor(wrapper.offsetWidth / cardWidth);
+        const maxIndex = cards.length - visibleCards < 0 ? 0 : cards.length - visibleCards;
+        if (current < maxIndex) {
+          current++;
+        } else {
+          current = 0;
+        }
+        updateCarousel(1);
+      });
+      leftBtn.addEventListener('click', function() {
+        const cardWidth = cards[0].offsetWidth + 36;
+        const visibleCards = Math.floor(wrapper.offsetWidth / cardWidth);
+        const maxIndex = cards.length - visibleCards < 0 ? 0 : cards.length - visibleCards;
+        if (current > 0) {
+          current--;
+        } else {
+          current = maxIndex;
+        }
+        updateCarousel(-1);
+      });
+      // Hover effect
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.boxShadow = '0 12px 40px 0 #3e8cff44, 0 1.5px 0 0 #3e8cff99 inset';
+          card.style.transform = 'scale(1.06)';
+          card.style.borderColor = '#3e8cff';
+        });
+        card.addEventListener('mouseleave', () => {
+          updateCarousel();
+        });
+      });
+      window.addEventListener('resize', () => updateCarousel());
+      updateCarousel();
+    });
+    let currentTestimonial = 0;
+    const testimonials = [
+      {
+        name: "Eduardo Martins",
+        role: "Gerente de Projetos, ConnectUp",
+        content: "A integração entre nossos sistemas ficou perfeita! O time da AgilizaFLow é muito competente e atencioso.",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+      },
+      {
+        name: "Lucas Pereira",
+        role: "Coordenador de Operações, FastBiz",
+        content: "A consultoria da AgilizaFLow transformou nossa rotina. Hoje temos processos muito mais ágeis e confiáveis.",
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+      },
+      {
+        name: "Fernanda Souza",
+        role: "Supervisora de Atendimento, MegaTech",
+        content: "O suporte da equipe AgilizaFLow é diferenciado. Sempre prontos para ajudar e propor soluções inovadoras!",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+      },
+      {
+        name: "Rafael Torres",
+        role: "Diretor de TI, Soluções Ágil",
+        content: "A automação inteligente da AgilizaFLow nos ajudou a reduzir custos e melhorar a experiência dos nossos clientes.",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+      },
+      {
+        name: "Patrícia Almeida",
+        role: "Analista de Negócios, MarketPro",
+        content: "O painel de dados personalizado facilitou muito a tomada de decisões estratégicas. Recomendo a AgilizaFLow!",
+        avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150&h=150&fit=crop&crop=face"
+      }
+    ];
+    let isAnimating = false;
+    let autoPlayInterval = null;
+    let autoPlayDelay = 5000; // 5 segundos
+
+    function startAutoPlay() {
+      if (autoPlayInterval) clearInterval(autoPlayInterval);
+      autoPlayInterval = setInterval(() => {
+        if (!isAnimating) animateToNext();
+      }, autoPlayDelay);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) clearInterval(autoPlayInterval);
+    }
+
+    function addNavListeners() {
+      const left = document.querySelector('.carousel-nav-left');
+      const right = document.querySelector('.carousel-nav-right');
+      if (left) {
+        left.onclick = () => {
+          stopAutoPlay();
+          animateToPrev();
+          setTimeout(startAutoPlay, autoPlayDelay);
+        };
+      }
+      if (right) {
+        right.onclick = () => {
+          stopAutoPlay();
+          animateToNext();
+          setTimeout(startAutoPlay, autoPlayDelay);
+        };
+      }
+    }
+
+    function animateToNext() {
+      if (isAnimating) return;
+      isAnimating = true;
+      const track = document.getElementById('carouselTrack');
+      const cards = track.querySelectorAll('.testimonial-card');
+      if (cards[1]) {
+        cards[1].classList.add('fade-out-left');
+      }
+      setTimeout(() => {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        renderCarousel(() => {
+          const newCards = track.querySelectorAll('.testimonial-card');
+          if (newCards[1]) {
+            newCards[1].classList.add('fade-in-right');
+            setTimeout(() => {
+              newCards[1].classList.remove('fade-in-right');
+              isAnimating = false;
+            }, 500);
+          } else {
+            isAnimating = false;
+          }
+        });
+      }, 500);
+    }
+
+    function animateToPrev() {
+      if (isAnimating) return;
+      isAnimating = true;
+      const track = document.getElementById('carouselTrack');
+      const cards = track.querySelectorAll('.testimonial-card');
+      if (cards[1]) {
+        cards[1].classList.add('fade-out-right');
+      }
+      setTimeout(() => {
+        currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+        renderCarousel(() => {
+          const newCards = track.querySelectorAll('.testimonial-card');
+          if (newCards[1]) {
+            newCards[1].classList.add('fade-in-left');
+            setTimeout(() => {
+              newCards[1].classList.remove('fade-in-left');
+              isAnimating = false;
+            }, 500);
+          } else {
+            isAnimating = false;
+          }
+        });
+      }, 500);
+    }
+
+    function renderCarousel(callback) {
+      const track = document.getElementById('carouselTrack');
+      const indicators = document.getElementById('carouselIndicators');
+      track.innerHTML = '';
+      indicators.innerHTML = '';
+      [-1, 0, 1].forEach(offset => {
+        const index = (currentTestimonial + offset + testimonials.length) % testimonials.length;
+        const testimonial = testimonials[index];
+        const isCenter = offset === 0;
+        const card = document.createElement('div');
+        card.className = `testimonial-card ${isCenter ? 'active' : 'inactive'}`;
+        card.innerHTML = `
+          <div class="testimonial-header">
+            <img src="${testimonial.avatar}" alt="${testimonial.name}" class="testimonial-avatar">
+            <div class="testimonial-info">
+              <h4 class="testimonial-name">${testimonial.name}</h4>
+              <p class="testimonial-role">${testimonial.role}</p>
+            </div>
+          </div>
+          <div class="testimonial-stars">
+            ${'★'.repeat(5)}
+          </div>
+          <p class="testimonial-content">"${testimonial.content}"</p>
+        `;
+        track.appendChild(card);
+      });
+      testimonials.forEach((_, index) => {
+        const indicator = document.createElement('button');
+        indicator.className = `indicator ${index === currentTestimonial ? 'active' : ''}`;
+        indicator.onclick = () => goToTestimonial(index);
+        indicators.appendChild(indicator);
+      });
+      addNavListeners();
+      if (callback) callback();
+    }
+
+    function goToTestimonial(index) {
+      currentTestimonial = index;
+      renderCarousel();
+    }
+
+    // Inicializar carrossel e auto-play corretamente
+    renderCarousel();
+    startAutoPlay();
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const iconClose = document.getElementById('icon-close');
+      const closeMobileMenu = document.getElementById('closeMobileMenu');
+      if (closeMobileMenu) {
+        closeMobileMenu.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mobileMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('menu-open');
+          menuToggle.querySelectorAll('.bar').forEach(bar => bar.style.display = 'block');
+          iconClose.style.display = 'none';
+        });
+      }
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        mobileMenu.classList.toggle('open');
+        document.body.classList.toggle('menu-open');
+        // Alterna entre hambúrguer e X
+        if (!expanded) {
+          menuToggle.querySelectorAll('.bar').forEach(bar => bar.style.display = 'none');
+          iconClose.style.display = 'block';
+        } else {
+          menuToggle.querySelectorAll('.bar').forEach(bar => bar.style.display = 'block');
+          iconClose.style.display = 'none';
+        }
+      });
+      // Fecha o menu ao clicar em um link ou fora do menu
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('menu-open');
+          menuToggle.querySelectorAll('.bar').forEach(bar => bar.style.display = 'block');
+          iconClose.style.display = 'none';
+        });
+      });
+      document.addEventListener('click', function(e) {
+        if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && e.target !== menuToggle) {
+          mobileMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('menu-open');
+          menuToggle.querySelectorAll('.bar').forEach(bar => bar.style.display = 'block');
+          iconClose.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html> 
